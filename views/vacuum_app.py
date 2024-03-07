@@ -2,6 +2,7 @@ import tkinter as tk
 import threading
 import time
 from entities.vacuum import Vacuum
+from entities.vacuumdumb import VacuumDumb
 from rooms import get_list_of_rooms, States_Room
 from utils.updates import update_room_state_gui
 
@@ -14,7 +15,7 @@ class VacuumApp:
         self.room_list = get_list_of_rooms()
 
         # Creamos instancia de la aspiradora
-        self.vacuum = Vacuum("aspiradora", self.room_list[0], self.room_list)
+        self.vacuum = VacuumDumb("aspiradora", self.room_list[0], self.room_list)
         self.vacuum_thread = threading.Thread(target=self.vacuum.run)
         self.vacuum_thread.daemon = True
         self.vacuum_thread.start()
